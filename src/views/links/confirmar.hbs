@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>Delilah Restó</title>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a style="text-decoration: none;" class="gotoperfil" href="/profile"><img class="imgback"
+                    src="/assets/back2.png" alt=""> Perfil</a>
+            <h1>Delilah Restó</h1>
+            <div class="userlogged">
+                <img class="img-user" src="/assets/user.png" alt="">
+                <span id="userid" class="user-logged-text"><b>{{user.username}}</b></span>
+                <a href="/logout" style="text-decoration: none;"><span class="user-logout-text">Log-out</span></a>
+            </div>
+        </nav>
+    </header>
+
+    {{#if carrito}}
+
+    <p class="detalle-texto">Carrito de compra</p>
+    <br>
+    <br>
+    <div class="container-confirmar">
+        <div id="container-pedido" class="container-pedido">
+            {{#each carrito}}
+            <div class="platobase-confirmar" id="">
+                <form action="/links/removeitem" method="POST">
+                    <input style="display: none;" name="ID" value="{{ID}}" type="text">
+                    <button class="btn_remove" type="submit"><img src="/assets/remove.png" alt=""></button>
+                </form>
+                <img class="comida-img" src="{{Img}}" alt="">
+                {{#unless Img}}
+                <img class="comida-img" src="/assets/nofoto.png" alt="">
+                {{/unless}}
+                <span class="multipladoID" id="pedido{{@index}}" style="display: none;">{{Codigo}}</span>
+
+                {{#unless Gluten}}
+                <img src="/assets/gluten.png" alt="gluten-free" class="glutenlogo" id="logogluten">
+                {{/unless}}
+                <span class="comida-titulo" id="pedido{{@index}}b">{{NombrePlato}}</span>
+
+
+                <span class="comida-pesos">$</span><span class="comida-precio-resumen">{{Precio}}</span>
+            </div>
+            {{/each}}
+            <br>
+            <br>
+            <form action="/links/confirmar" method="POST">
+                <h2 class="total">Total: $ <span id="total" class="total"></span></h2>
+                <br>
+                <span class="formadepago">Forma de pago:</span>
+                <br>
+                <select class="formadepago-select" name="TipoPago">
+                    <option>Efectivo</option>
+                    <option>Tarjeta</option>
+                </select>
+                <br>
+                <br>
+                <span class="formadepago">Dirección:</span>
+                <br>
+                <span class="formadepago-select">{{user.address}}</span>
+                <br>
+
+                <input type="text" style="display: none;" value="NUEVO" name="Estado" class="desc"><br>
+                <input id="desc" type="text" style="display: none;" value="" name="Descripcion" class="desc"><br>
+                <input id="desc2" type="text" style="display: none;" value="" name="DescripcionCompleta"
+                    class="desc"><br>
+                <input id="inputpreciototal" style="display: none;" type="text" value="" name="Pago"><br>
+                <input type="text" style="display: none;" value="{{user.address}}" name="Direccion"><br>
+                <input type="text" style="display: none;" value="{{user.fullname}}" name="Usuario"><br>
+                <br>
+                <br>
+                <button class="btn_confirmar">CONFIRMAR PEDIDO</button>
+                <br>
+            </form>
+            <form action="/links/borrarcarrito" method="POST">
+                <button class="btntrash" type="submit"><img class="imgtrash" src="/assets/trash.png" alt=""></button>
+            </form>
+
+
+        </div>
+    </div>
+    {{/if}}
+    {{#unless carrito}}
+    <div style="display: ;" class="sincompras" id="sincompras">
+        <p id="sincomprastext" class="sincompras-text">No tiene productos en el carrito</p>
+        <a style="text-decoration: none;" href="/profile">
+            <p class="sincompras-volver">Volver</p>
+        </a>
+       
+    </div>
+
+    {{/unless}}
+
+    <br>
+
+
+
+
+
+
+    <script>
+        var contflash = document.getElementById('contflash');
+        var btnx = document.getElementById('btnx');
+        var userid = document.getElementById('userid');
+        var userinput = document.getElementById('userinput');
+        var sumaprecios = document.getElementsByClassName('comida-precio-resumen');
+        var total = document.getElementById('total');
+        var totalarray = [];
+        var sum;
+        var inputpreciototal = document.getElementById('inputpreciototal');
+        var platos = document.getElementsByClassName('multipladoID');
+        var platosb = document.getElementsByClassName('comida-titulo');
+        var desc = document.getElementById('desc');
+        var desc2 = document.getElementById('desc2');
+
+
+        function ocultar() {
+            contflash.setAttribute('style', 'display: none');
+        }
+
+        function suma() {
+            for (let i = 0; i < sumaprecios.length; i++) {
+                totalarray.push(parseInt(sumaprecios[i].innerText));
+            };
+
+            sum = totalarray.reduce((a, b) => a + b);
+            total.innerText = sum;
+            inputpreciototal.value = sum;
+        }
+
+
+
+
+        function asignarID() {
+            if (platos.length === 1) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                desc.value = "1x" + n0;
+                desc2.value = n0b;
+            } else if (platos.length === 2) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1;
+                desc2.value = n0b + '-' + n1b;
+            } else if (platos.length === 3) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n2 = document.getElementById('pedido2').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                var n2b = document.getElementById('pedido2b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1 + ' ' + "1x" + n2;
+                desc2.value = n0b + '-' + n1b + '-' + n2b;
+            } else if (platos.length === 4) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n2 = document.getElementById('pedido2').textContent;
+                var n3 = document.getElementById('pedido3').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                var n2b = document.getElementById('pedido2b').textContent;
+                var n3b = document.getElementById('pedido3b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1 + ' ' + "1x" + n2 + ' ' + "1x" + n3;
+                desc2.value = n0b + '-' + n1b + '-' + n2b + '-' + n3b;
+            } else if (platos.length === 5) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n2 = document.getElementById('pedido2').textContent;
+                var n3 = document.getElementById('pedido3').textContent;
+                var n4 = document.getElementById('pedido4').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                var n2b = document.getElementById('pedido2b').textContent;
+                var n3b = document.getElementById('pedido3b').textContent;
+                var n4b = document.getElementById('pedido4b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1 + ' ' + "1x" + n2 + ' ' + "1x" + n3 + ' ' + "1x" + n4;
+                desc2.value = n0 + '-' + n1b + '-' + n2b + '-' + n3b + '-' + n4b;
+            } else if (platos.length === 6) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n2 = document.getElementById('pedido2').textContent;
+                var n3 = document.getElementById('pedido3').textContent;
+                var n4 = document.getElementById('pedido4').textContent;
+                var n5 = document.getElementById('pedido5').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                var n2b = document.getElementById('pedido2b').textContent;
+                var n3b = document.getElementById('pedido3b').textContent;
+                var n4b = document.getElementById('pedido4b').textContent;
+                var n5b = document.getElementById('pedido5b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1 + ' ' + "1x" + n2 + ' ' + "1x" + n3 + ' ' + "1x" + n4 + ' ' + "1x" + n5;
+                desc2.value = n0b + '-' + n1b + '-' + n2b + '-' + n3b + '-' + n4b + '-' + n5b;
+            } else if (platos.length === 7) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n2 = document.getElementById('pedido2').textContent;
+                var n3 = document.getElementById('pedido3').textContent;
+                var n4 = document.getElementById('pedido4').textContent;
+                var n5 = document.getElementById('pedido5').textContent;
+                var n6 = document.getElementById('pedido6').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                var n2b = document.getElementById('pedido2b').textContent;
+                var n3b = document.getElementById('pedido3b').textContent;
+                var n4b = document.getElementById('pedido4b').textContent;
+                var n5b = document.getElementById('pedido5b').textContent;
+                var n6b = document.getElementById('pedido6b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1 + ' ' + "1x" + n2 + ' ' + "1x" + n3 + ' ' + "1x" + n4 + ' ' + "1x" + n5 + ' ' + "1x" + n6;
+                desc2.value = n0b + '-' + n1b + '-' + n2b + '-' + n3b + '-' + n4b + '-' + n5b + '-' + n6b;
+            } else if (platos.length === 8) {
+                var n0 = document.getElementById('pedido0').textContent;
+                var n1 = document.getElementById('pedido1').textContent;
+                var n2 = document.getElementById('pedido2').textContent;
+                var n3 = document.getElementById('pedido3').textContent;
+                var n4 = document.getElementById('pedido4').textContent;
+                var n5 = document.getElementById('pedido5').textContent;
+                var n6 = document.getElementById('pedido6').textContent;
+                var n7 = document.getElementById('pedido6').textContent;
+                var n0b = document.getElementById('pedido0b').textContent;
+                var n1b = document.getElementById('pedido1b').textContent;
+                var n2b = document.getElementById('pedido2b').textContent;
+                var n3b = document.getElementById('pedido3b').textContent;
+                var n4b = document.getElementById('pedido4b').textContent;
+                var n5b = document.getElementById('pedido5b').textContent;
+                var n6b = document.getElementById('pedido6b').textContent;
+                var n7b = document.getElementById('pedido6b').textContent;
+                desc.value = "1x" + n0 + ' ' + "1x" + n1 + ' ' + "1x" + n2 + ' ' + "1x" + n3 + ' ' + "1x" + n4 + ' ' + "1x" + n5 + ' ' + "1x" + n6 + ' ' + "1x" + n7;
+                desc2.value = n0b + '-' + n1b + '-' + n2b + '-' + n3b + '-' + n4b + '-' + n5b + '-' + n6b + '-' + n7b;
+            };
+        };
+
+        suma();
+        asignarID();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>Delilah Restó</title>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Delilah Restó</h1>
+            <div class="userlogged">
+                <img class="img-user" src="/assets/user.png" alt="">
+                <span id="userid" class="user-logged-text"><b>{{user.username}}</b></span>
+                <a href="/logout" style="text-decoration: none;"><span class="user-logout-text">Log-out</span></a>
+            </div>
+        </nav>
+    </header>
+    <div class="agregarplato-text">
+        <h2>Modificar producto</h2>
+    </div>
+
+    <section>
+        <form action="/links/modify/{{plato.ID}}" method="POST" class="registercontainer">
+            <div class="container-input">
+                <p class="spanregisterinput"><b>Nombre del plato</b></p>
+                <input type="text" value="{{plato.NombrePlato}}" class="registerinput" name="NombrePlato">
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput"><b>Codigo abreviado del plato</b></p>
+                <input type="text" value="{{plato.Codigo}}" class="registerinput" name="Codigo">
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput"><b>Precio</b></p>
+                <input type="number" value="{{plato.Precio}}" class="registerinput" name="Precio">
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput"><b>Imagen</b> (80 x 80 px)</p>
+                <input type="text" value="{{plato.Img}}" class="registerinput" name="Img">
+            </div>
+            <div class="container-gluten">
+                <p class="spanregisterinput"><b>Gluten-free</b></p>
+                <div class="subcontainer-gluten">
+                    <input type="radio" id="gluten" name="Gluten" value="0">
+                    <label for="Si" class="spanRadioinput">Si</label><br>
+                    <input type="radio" id="gluten" name="Gluten" value="1">
+                    <label for="No" class="spanRadioinput">No</label>
+                </div>
+
+                <button type="submit" class="btn_modificarplato" id="btn-crearcuenta">MODIFICAR PLATO</button>
+
+        </form>
+    </section>
+</body>
+
+</html>

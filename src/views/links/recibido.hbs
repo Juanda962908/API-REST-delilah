@@ -1,0 +1,32 @@
+<body>
+    <header>
+        <nav>
+            <a style="text-decoration: none;" class="gotoperfil" href="/profile"><img class="imgback"
+                    src="/assets/back2.png" alt=""> Perfil</a>
+            <h1>Delilah Restó</h1>
+            <div class="userlogged">
+                <img class="img-user" src="/assets/user.png" alt="">
+                <span id="userid" class="user-logged-text"><b>{{user.username}}</b></span>
+                <a href="/logout" style="text-decoration: none;"><span class="user-logout-text">Log-out</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-recibido">
+        <div class="container-msg-recibido">
+            <img src="/assets/recibido.png" alt="">
+            <br>
+            <span class="recibimos-title">¡Recibimos tu pedido!</span>
+            <span class="recibimos-text">{{user.fullname}} gracias por pedir a Delilah. Puedes seguir tu pedido para
+                saber donde está. </span>
+            <br>
+            <br>
+            <a href="/links/seguimiento"><button class="btn_seguir">SEGUIR PEDIDO</button></a>
+        </div>
+    </div>
+
+ 
+
+
+
+</body>

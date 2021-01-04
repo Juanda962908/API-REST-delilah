@@ -1,0 +1,204 @@
+<body>
+    <header>
+
+        <nav>
+            <a style="text-decoration: none;" class="gotoperfil" href="/profile"><img class="imgback"
+                    src="/assets/back2.png" alt=""> Perfil</a>
+            <h1>Delilah Restó</h1>
+            <div class="userlogged">
+                <img class="img-user" src="/assets/user.png" alt="">
+                <span id="userid" class="user-logged-text"><b>{{user.username}}</b></span>
+                <a href="/logout" style="text-decoration: none;"><span class="user-logout-text">Log-out</span></a>
+            </div>
+
+        </nav>
+
+    </header>
+
+    {{#if pedidos}}
+    <div class="maincontainer-seguir">
+        <div style="display: none;" id="recibido" class="ventanacancelar">
+            <form class="containermsg" action="/links/seguir" method="POST">
+                <p class="canceltitle">¿Desea cancelar su pedido?</p>
+                <div class="botoneraventana">
+                    <button class="btn_cancel_yes" type="submit">SI</button>
+                </div>
+            </form>
+            <button class="btn_cancel_no" onclick="ocultarventana()">NO</button>
+        </div>
+
+        <div style="display: none;" id="cancel" class="ventanacancelar">
+            <form class="containermsg" action="/links/recibido" method="POST">
+                <p class="canceltitle">¿Recibió su pedido?</p>
+                <div class="botoneraventana">
+                    <button class="btn_cancel_yes" type="submit">SI</button>
+                </div>
+            </form>
+            <button class="btn_cancel_no" onclick="ocultarventana()">NO</button>
+        </div>
+
+        <div id="container-seguir" class="container-seguir">
+            <div class="container-msg-seguir">
+                <span class="estado-title">
+                    Estado
+                </span>
+                <br>
+                <div class="tracking" id="tracking">
+                    <img id="imgtrack1" src="/assets/track1.jpg" class="imgtrack" alt="">
+                    <span id="track-done">Confirmado</span>
+                    <br>
+                    <br>
+                    <span id="track-doing">En preparación</span>
+                    <br>
+                    <br>
+                    <span id="track-omw">En camino</span>
+                    <br>
+                    <br>
+                    <span id="track-omw2">Entregado</span>
+                    <br>
+                </div>
+                <span class="estado-title">
+                    Detalle
+                </span>
+                <br>
+                <br>
+                {{#each pedidos}}
+                <p id="pedido" style="display: ;" class="platospedidos">{{DescripcionCompleta}}</p>
+                <br>
+                <p class="detalles">Total: <span><b>${{Pago}}</b></span></p>
+                <p class="detalles">Forma de pago: <span><b>{{TipoPago}}</b></span></p>
+                <p class="detalles">Dirección de envío: <span><b>{{Direccion}}</b></span></p>
+                <p style="display: none;" id="status" class="estado">{{Estado}}</p>
+                <p style="display: none;" id="num" class="estado">{{Numero}}</p>
+
+                {{/each}}
+                <br>
+                <div class="botonera_seguimiento">
+                    <button class="btn_cancelar" onclick="ventananrecibir()">RECIBÍ EL PEDIDO</button>
+
+                    <button class="btn_cancelar" onclick="ventanacancelar()">CANCELAR PEDIDO</button>
+                </div>
+                <input id="inputfullname" style="display: none;" type="text" value="{{user.fullname}}">
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    {{/if}}
+
+    <div style="display: ;" class="sincompras" id="sincompras">
+        <p id="sincomprastext" class="sincompras-text">No tiene compras en curso</p>
+        <a style="text-decoration: none;" href="/profile">
+            <p class="sincompras-volver">Volver</p>
+        </a>
+      
+
+    </div>
+
+
+
+    <script>
+        var estado = document.getElementById('status');
+        var track1 = document.getElementById('track-done');
+        var track2 = document.getElementById('track-doing');
+        var track3 = document.getElementById('track-omw');
+        var track4 = document.getElementById('track-omw2');
+        var img = document.getElementById('imgtrack1');
+        var pedido = document.getElementById('pedido');
+        var seguir = document.getElementById('container-seguir');
+        var sincompras = document.getElementById('sincompras');
+        var sincomprastext = document.getElementById('sincomprastext');
+        var num = document.getElementById('num');
+        var recibido = document.getElementById('recibido');
+        var cancel = document.getElementById('cancel');
+        var tracking = document.getElementById('tracking');
+
+
+        function detectarPedido() {
+            if (estado.textContent === "CANCELADO") {
+                num.textContent = 0;
+                seguir.setAttribute('style', 'display: none;');
+                sincompras.setAttribute('style', 'display:');
+                sincomprastext.textContent = "Su último pedido fue cancelado. Aguarde 5 minutos."
+            } else {
+                sincompras.setAttribute('style', 'display: none');
+                seguir.setAttribute('style', '');
+                actualizarEstado();
+                listarComida();
+            };
+        };
+
+        function listarComida() {
+            if (num.textContent > 0) {
+                ped = pedido.textContent;
+                var res = ped.replace(/-/g, `<br>`);
+                pedido.innerHTML = res;
+            };
+        };
+
+        function actualizarEstado() {
+            if (estado.textContent === "NUEVO") {
+                track1.style.display = "none";
+                tracking.className = "tracking-process"
+                track2.className = "next";
+                track2.textContent = "Su pedido está siendo procesado.";
+                track3.style.display = "none";
+                track4.style.display = "none";
+                img.src = "";
+            } else if (estado.textContent === "CONFIRMADO") {
+                tracking.className = "tracking"
+                track1.className = "current";
+                track1.style.fontWeight = "bold";
+                track2.className = "next";
+                track3.className = "future";
+                track4.className = "future";
+                img.src = "/assets/track2.jpg";
+            } else if (estado.textContent === "PREPARANDO") {
+                tracking.className = "tracking"
+                track1.className = "current";
+                track2.className = "current";
+                track2.style.fontWeight = "bold";
+                track3.className = "next";
+                track4.className = "future";
+                img.src = "/assets/track2.jpg";
+            } else if (estado.textContent === "ENVIANDO") {
+                tracking.className = "tracking"
+                track1.className = "current";
+                track2.className = "current";
+                track3.className = "current";
+                track3.style.fontWeight = "bold";
+                track4.className = "next";
+                img.src = "/assets/track3.jpg";
+            } else if (estado.textContent === "ENTREGADO") {
+                tracking.className = "tracking"
+                track1.className = "current";
+                track2.className = "current";
+                track3.className = "current";
+                track4.className = "current";
+                track4.style.fontWeight = "bold";
+                img.src = "/assets/track4.jpg";
+            };
+        };
+
+
+        function ventanacancelar() {
+            recibido.setAttribute('style', 'display');
+        };
+
+        function ventananrecibir() {
+            cancel.setAttribute('style', 'display');
+        };
+
+        function ocultarventana() {
+            cancel.setAttribute('style', 'display: none;');
+            recibido.setAttribute('style', 'display: none;');
+
+        };
+
+        detectarPedido();
+
+    </script>
+
+</body>

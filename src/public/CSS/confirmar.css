@@ -1,0 +1,153 @@
+
+.btntrash{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-left: 500px;
+    margin-top: -174px;
+}
+
+.btntrash:hover{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: rgb(73, 73, 73);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-left: 500px;
+    margin-top: -174px;
+}
+
+.imgtrash{
+    height: 27px;
+}
+
+.container-confirmar{
+    margin-top: -50px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.container-pedido{
+    width: 650px;
+}
+
+.detalle-texto{
+    position: relative;
+    font-family: 'Fredoka One', cursive;
+    font-size:20px;
+    margin-top: 50px;
+    margin-left: 30.7%;
+    color: slategray;
+}
+
+.inputplatos1{
+    width: 200px;
+}
+
+.inputplatos{
+    width: 50px;
+}
+
+.inputplatosID{
+    width: 50px;
+}
+
+.platobase-confirmar{
+    margin-top: 40px;
+    width: 80%;
+    height: 100px;
+}
+
+
+.comida-precio-resumen{
+    position: absolute;
+    margin-left: 60px;
+    margin-top: 43px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 24px;
+    font-weight: 500;
+    color: slategray;
+    padding-top: 10px;
+}
+
+.comida-pesos{
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 53px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 24px;
+    font-weight: 500;
+    color: slategray;
+}
+
+
+.total{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 24px;
+    color: rgb(66, 66, 66);
+    font-weight: bold;
+}
+
+.formadepago{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 18px;
+    color: grey;
+    font-weight: bold;
+}
+
+.formadepago-select{
+    width: 120px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 22px;
+    color: rgb(59, 59, 59); 
+    border: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn_confirmar{
+    position: absolute;
+    width: 270px;
+    height: 50px;
+    background-color: #fc885c;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: white;
+    border: 0px;
+    border-radius: 35px;
+    margin-left: 180px;
+    margin-top: -150px;
+}
+
+.btn_confirmar:hover{
+    position: absolute;
+    width: 270px;
+    height: 50px;
+    background-color: #f76830;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: white;
+    border: 0px;
+    border-radius: 35px;
+    margin-left: 180px;
+    margin-top: -150px;
+}
+
+.desc{
+    width: 600px;
+}
+

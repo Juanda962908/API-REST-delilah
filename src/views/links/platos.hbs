@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>Delilah Restó</title>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a style="text-decoration: none;" class="gotoperfil" href="/profile"><img class="imgback" src="/assets/back2.png" alt=""> Perfil</a>
+            <h1>Delilah Restó</h1>
+            <div class="userlogged">
+                <img class="img-user" src="/assets/user.png" alt="">
+                <span id="userid" class="user-logged-text"><b>{{user.username}}</b></span>
+                <a href="/logout" style="text-decoration: none;"><span class="user-logout-text">Log-out</span></a>
+            </div>
+        </nav>
+    </header>
+
+    {{#unless checkeo2pedidos}}
+
+    <p class="nuestrosplatos-texto">Nuestros platos</p>
+    <div class="container-general">
+        <div class="platos">
+            {{#if success}}
+            <div class="container-flash" id="contflash">
+                <p class="platoagregado">Agregado al carrito</p>
+                <button class="btn-x" id="btnx" onclick="ocultarflash()"><b>X</b></button>
+            </div>
+            {{/if}}
+            {{#each menu}}
+            <div class="platobase" id="container-plato">
+                <div class="forms" style="display: none;">
+                    <form action="/links/platos" method="POST">
+                        <input style="display: none;" class="inputplatos1" type="text" value="{{NombrePlato}}"
+                            name="NombrePlato">
+                        <input style="display: none;" class="inputplatos" type="text" value="{{Codigo}}" name="Codigo">
+                        <input style="display: none;" class="inputplatos" type="text" value="{{Precio}}" name="Precio">
+                        <input style="display: none;" class="inputplatos" type="text" value="{{ID}}" name="ID">
+                        <input style="display: none;" class="inputplatosUsername" type="text" value="" name="username">
+                        <input style="display: none;" class="inputplatosID" type="text" value="" name="user_id">
+                        <input style="display: none;" class="" type="text" value="{{Img}}" name="Img">
+                </div>
+                <img class="comida-img" src="{{Img}}" alt="">
+
+                {{#unless Img}}
+                <img class="comida-img" src="/assets/nofoto.png" alt="">
+                {{/unless}}
+
+                {{#unless Gluten}}
+                <img src="/assets/gluten.png" alt="gluten-free" class="glutenlogo" id="logogluten">
+                {{/unless}}
+                <span id="nombreplato" class="comida-titulo">{{NombrePlato}}</span>
+                <span id="precio" class="comida-precio">${{Precio}}</span>
+                <a href="/links/platos/{{ID}}" onclick="show()"><button class="btn-agregar" name="{{ID}}">+</button></a>
+                </form>
+            </div>
+            {{/each}}
+
+            <div class="botonera_checkout">
+                <input style="display: none;" id="numeroID" type="text" value="{{user.ID}}">
+                <a href="/links/confirmar"><button class="btn_checkout">Check-out</button></a>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+    {{/unless}}
+    {{#each checkeo2pedidos}}
+    <p style="display: none;" id="status" class="estado">{{Estado}}</p>
+
+    <div style="display: none;" class="sincompras" id="sincompras">
+        <p id="sincomprastext" class="sincompras-text">Ya tiene un pedido en curso</p>
+        <a style="text-decoration: none;" href="/profile">
+            <p class="sincompras-volver">Volver</p>
+        </a>
+    </div>
+    {{/each}}
+
+
+
+    <script>
+        var contflash = document.getElementById('contflash');
+        var username = document.getElementsByClassName('inputplatosUsername');
+        var userid = document.getElementById('userid');
+        var numeroID = document.getElementById('numeroID');
+        var inputplatosID = document.getElementsByClassName('inputplatosID');
+        var estado = document.getElementById('status');
+        var sincomprastext = document.getElementById('sincomprastext');
+
+
+        function detectarPedido() {
+            console.log(estado.textContent)
+            if (estado.textContent != "CANCELADO") {
+                sincompras.setAttribute('style', 'display:');
+            } else if (estado.textContent === "CANCELADO") {
+                sincompras.setAttribute('style', 'display:');
+                sincomprastext.textContent = "Su último pedido fue cancelado. Aguarde 5 minutos"
+            }
+        };
+
+
+        function llenaruserID() {
+            for (let i = 0; i < username.length; i++) {
+                username[i].value = userid.textContent;
+            };
+        };
+
+        function llenarnumeroID() {
+            for (let i = 0; i < inputplatosID.length; i++) {
+                inputplatosID[i].value = numeroID.value;
+            };
+        };
+
+        function ocultarflash() {
+            contflash.style.display = 'none';
+        }
+
+        llenarnumeroID();
+        llenaruserID();
+        detectarPedido();
+    </script>
+
+</body>
+
+</html>

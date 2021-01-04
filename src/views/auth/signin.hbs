@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>Delilah Restó</title>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Delilah Restó</h1>
+        </nav>
+    </header>
+
+    {{#if message}}
+    <div class="container-error" id="contflash">
+        <div class="container-platoagregado">
+            <p class="platoagregado">Datos ingresados incorrectos</p>
+        </div>
+        <button class="btn-xlogin-error" id="btnx" onclick="ocultarflash()"><b>X</b></button>
+    </div>
+    {{/if}}
+
+
+
+
+
+    <section>
+        <form action="/signin" method="POST" class="registercontainer">
+            <div class="container-input">
+                <p class="spanregisterinput">Usuario</p>
+                <input type="text" class="registerinput" name="username" autofocus>
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput">Contraseña</p>
+                <input type="password" class="registerinput" name="password">
+            </div>
+
+
+            <button type="submit" class="btn_login">INICIAR SESIÓN</button>
+
+        </form>
+    </section>
+</body>
+
+
+
+
+
+<script>
+    var contflash = document.getElementById('contflash');
+        function ocultarflash() {
+            contflash.style.display = 'none';
+        }
+
+</script>
+
+</html>

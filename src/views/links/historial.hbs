@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <title>Delilah Restó admin</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="navadminH">
+            <div class="navadmin-izq">
+                <h1>Delilah Restó</h1>
+                <span class="fechatext" id="fecha"></span>
+                <div class="userloggedAdmin">
+                    <span id="userid" class="user-logged-textA"><b>{{user.username}}</b></span>
+                    <a class="logoutAdmin" href="/logout" style="text-decoration: none;">LOG-OUT</a>
+                    <a class="logoutAdmin" href="/profile" style="text-decoration: none;">PERFIL</a>
+                </div>
+
+            </div>
+            <div class="navadmin-der">
+                <div class="navadmin-menutext-barra">
+                    <a href="/links/admin" style="text-decoration: none;"><span
+                            class="navadmin-menutext">PEDIDOS</span></a>
+                </div>
+                <div class="navadmin-menutext-barra">
+                    <a href="/links/usuarios" style="text-decoration: none;"><span
+                            class="navadmin-menutext">USUARIOS</span></a>
+                </div>
+                <div class="navadmin-menutext-barraH">
+                    <a href="/links/historial" style="text-decoration: none;"><span
+                            class="navadmin-menutext">HISTORIAL</span></a>
+                </div>
+                <div class="navadmin-menutext-barra">
+                    <a href="/links/menu" style="text-decoration: none;"><span class="navadmin-menutext">MENU</span></a>
+                </div>
+                <a href="/links/add"><button class="navadmin-menu-btn"><b>CARGAR PRODUCTO</b></button></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="barra-estado">
+        <div class="estado">ESTADO</div>
+        <div class="hora">FECHA/HORA</div>
+        <div class="numero">NUMERO</div>
+        <div class="descripcion">DESCRIPCION</div>
+        <div class="pagot">PAGO</div>
+        <div class="usuario">USUARIO</div>
+        <div class="direccion">DIRECCION</div>
+        <form action="/links/borrarhistorial" method="POST">
+            <button class="borrarhistorial" type="submit">Borrar historial</button>
+        </form>
+    </div>
+
+    {{#each pedidos}}
+    <div class="contenido">
+        <div class="estado2">{{Estado}}</div>
+        <div class="hora2">{{Hora}}</div>
+        <div class="numero2">{{Numero}}</div>
+        <div class="descripcion2">{{Descripcion}}</div>
+        <div class="pagot2">{{TipoPago}}</div>
+        <div class="pago2">{{Pago}}</div>
+        <div class="usuario2">{{Usuario}}</div>
+        <div class="direccion2">{{Direccion}}</div>
+        <div class="mostrarmas2"></div>
+
+        <form action="/links/undohistorial" method="POST">
+            <input type="text" value="{{Estado}}" name="Estado" style="display: none;">
+            <input type="text" value="{{Numero}}" name="Numero" style="display: none;">
+            <input type="text" value="{{Descripcion}}" name="Descripcion" style="display: none;">
+            <input type="text" value="{{DescripcionCompleta}}" name="DescripcionCompleta" style="display: none;">
+            <input type="text" value="{{TipoPago}}" name="TipoPago" style="display: none;">
+            <input type="text" value="{{Pago}}" name="Pago" style="display: none;">
+            <input type="text" value="{{Usuario}}" name="Usuario" style="display: none;">
+            <input type="text" value="{{user_id}}" name="user_id" style="display: none;">
+            <input type="text" value="{{Direccion}}" name="Direccion" style="display: none;">
+            <button class="undo" type="submit">Mover a Pedidos</button>
+        </form>
+    </div>
+    {{/each}}
+
+
+
+
+
+
+
+
+    <script>
+        var fecha = document.getElementById('fecha');
+        var hora = document.getElementsByClassName('hora2');
+        var numero = document.getElementsByClassName('numero2');
+        var contenido = document.getElementsByClassName('contenido');
+        var pago = document.getElementsByClassName('pago2');
+        var tipopago = document.getElementsByClassName('pagot2');
+        var estado = document.getElementsByClassName('estado2');
+        var userid = document.getElementsByClassName('userid');
+        var refresh = document.getElementsByClassName('refresh');
+
+
+        function ponerfecha() {
+            var hoy = new Date();
+            var dd = String(hoy.getDate()).padStart(2, '0');
+            var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+            var yyyy = hoy.getFullYear();
+            hoy = dd + '/' + mm + '/' + yyyy;
+            fecha.textContent = hoy;
+        };
+
+        function corregirHora() {
+            for (let i = 0; i < hora.length; i++) {
+                var horasinCorregir = hora[i].textContent;
+                var horaCorrregida = horasinCorregir.slice(4, 21)
+                hora[i].textContent = horaCorrregida;
+            };
+        };
+
+        function corregirNumero() {
+            for (let i = 0; i < numero.length; i++) {
+                numero[i].textContent = "#" + numero[i].textContent;
+            };
+        };
+
+        function corregirPrecio() {
+            for (let i = 0; i < pago.length; i++) {
+                pago[i].textContent = "$" + pago[i].textContent;
+            };
+        };
+
+        function cambiarIcono() {
+            for (let i = 0; i < tipopago.length; i++) {
+                if (tipopago[i].textContent === "Tarjeta") {
+                    tipopago[i].innerHTML = `<img class="imgpago" src="/assets/tarjeta.png" title="Tarjeta" alt="Tarjeta">`
+                } else {
+                    tipopago[i].innerHTML = `<img class="imgpago" src="/assets/efectivo.png" title="Efectivo" alt="Efectivo">`
+                };
+            };
+        };
+
+
+        ponerfecha();
+        corregirHora();
+//        corregirNumero();
+//        corregirPrecio();
+        cambiarIcono();
+    </script>
+</body>

@@ -1,0 +1,312 @@
+
+
+.contenidoMenu{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(216, 214, 214);
+}
+
+.contenidoMenu:hover{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(216, 214, 214);
+    font-weight: bold;
+}
+
+
+.menuID-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    padding-top: 4px;
+    margin-left: 100px;
+}
+
+.menuCodigo-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+.menuNombre-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding-top: 4px;
+}
+
+.menuNombre-title2{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    padding-top: 4px;
+}
+
+.menuGluten-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+.menuGluten-title2{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    padding-top: 4px;
+}
+
+
+.menuPrecio-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+.userAddress-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding-top: 4px;
+}
+
+.userRol-title{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+
+.menuID{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    padding-top: 4px;
+    margin-left: 100px;
+}
+
+.menuCodigo{
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+.menuNombre { 
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding-top: 4px;
+}
+
+.menuNombre2 { 
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    padding-top: 4px;
+}
+
+.menuGluten { 
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+.menuGluten2 { 
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    padding-top: 4px;
+}
+
+.menuPrecio { 
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-top: 4px;
+}
+
+.menuImg { 
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 350px;
+    padding-top: 4px;
+}
+
+.borrarusuarios{
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    color: rgb(160, 160, 160);
+    margin-top: -10px;
+}
+
+.borrarmenu{
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    color: rgb(160, 160, 160);
+    padding-left: 14px;
+    margin-top: 2px;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+}
+
+
+.menuEditar{
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 14px;
+    color: rgb(160, 160, 160);
+    padding-left: 14px;
+    margin-top: 4px;
+    margin-left: 1350px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+
+.container-editar{
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    background-color: #fff;
+    margin-left: 1100px;
+    margin-top: 200px;
+    border: 1px solid red;
+    border-radius: 20px;
+}
+
+.btn_guardar_cambios{
+    margin-left: 100px;
+    margin-top: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: gray;
+    border-radius: 5px;
+    height: 30px;
+    width: 150px;
+}
+
+

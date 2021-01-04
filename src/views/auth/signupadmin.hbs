@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>Delilah Restó</title>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Registro de cuenta admin</h1>
+        </nav>
+    </header>
+    <section>
+        <form action="/signupadmin" method="POST" class="registercontainer">
+            <div class="container-input">
+                <p class="spanregisterinput">Usuario</p>
+                <input type="text" class="registerinput" name="username" autofocus>
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput">Nombre y Apellido</p>
+                <input type="text" class="registerinput" name="fullname">
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput">Correo electrónico</p>
+                <input type="email" class="registerinput" name="email">
+            </div>
+            <div class="container-input">
+                <p class="spanregisterinput">Contraseña</p>
+                <input type="password" class="registerinput" name="password">
+            </div>
+            <div style="display: none;">
+                <input type="text" class="registerinput" value="admin" name="Role">
+            </div>
+
+            <button type="submit" class="btn_crearcuenta_admin" id="btn-crearcuenta">CREAR CUENTA</button>
+            <a href="/"><button class="btn_iniciarsesion2">VOLVER</button></a>
+            <br>
+        </form>
+    </section>
+</body>
+
+</html>

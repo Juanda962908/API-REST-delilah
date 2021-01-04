@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>Delilah Restó</title>
+
+
+
+
+</head>
+
+
+
+<body>
+    <header>
+        <nav>
+            <h1>Delilah Restó</h1>
+            <div class="userlogged">
+                <img class="img-user" src="/assets/user.png" alt="">
+                <span id="userid" class="user-logged-text"><b>{{user.username}}</b></span>
+                <a href="/logout" style="text-decoration: none;"><span class="user-logout-text">Log-out</span></a>
+            </div>
+        </nav>
+    </header>
+
+    {{#if success}}
+    <div class="container-login" id="contflash">
+        <div class="container-platoagregado">
+            <p class="platoagregado">Bienvenido/a {{user.username}}</p>
+        </div>
+        <button class="btn-xlogin" id="btnx"><b>X</b></button>
+    </div>
+    {{/if}}
+    <div class="botonera_menuprofile">
+        <a href="links/platos"><button class="btn_menuprofile">Hacer un nuevo pedido</button></a>
+        <a href="links/seguimiento"><button class="btn_menuprofile">Estado de mi pedido</button></a>
+        <a href="links/confirmar"><button class="btn_menuprofile">Ir a mi carrito</button></a> 
+    </div>
+
+    <script>
+        var contflash = document.getElementById('contflash');
+        var btnx = document.getElementById('btnx');
+
+        btnx.addEventListener('click', ocultar);
+
+        function ocultar() {
+            contflash.setAttribute('style', 'display: none')
+        }
+    </script>
+
+
+</body>
+
+
+
+</html>

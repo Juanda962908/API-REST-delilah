@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <title>Delilah Restó admin</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="navadminM">
+            <div class="navadmin-izq">
+                <h1>Delilah Restó</h1>
+                <span class="fechatext" id="fecha"></span>
+                <div class="userloggedAdmin">
+                    <span id="userid" class="user-logged-textA"><b>{{user.username}}</b></span>
+                    <a class="logoutAdmin" href="/logout" style="text-decoration: none;">LOG-OUT</a>
+                    <a class="logoutAdmin" href="/profile" style="text-decoration: none;">PERFIL</a>
+                </div>
+
+
+
+
+            </div>
+            <div class="navadmin-der">
+                <div class="navadmin-menutext-barra">
+                    <a href="/links/admin" style="text-decoration: none;"><span
+                            class="navadmin-menutext">PEDIDOS</span></a>
+                </div>
+                <div class="navadmin-menutext-barra">
+                    <a href="/links/usuarios" style="text-decoration: none;"><span
+                            class="navadmin-menutext">USUARIOS</span></a>
+                </div>
+                <div class="navadmin-menutext-barra">
+                    <a href="/links/historial" style="text-decoration: none;"><span
+                            class="navadmin-menutext">HISTORIAL</span></a>
+                </div>
+                <div class="navadmin-menutext-barraH">
+                    <a href="/links/menu" style="text-decoration: none;"><span class="navadmin-menutext">MENU</span></a>
+                </div>
+                <a href="/links/add"><button class="navadmin-menu-btn"><b>CARGAR PRODUCTO</b></button></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="barra-estado">
+        <div class="menuID-title">ID</div>
+        <div class="menuCodigo-title">CODIGO</div>
+        <div class="menuNombre-title">NOMBRE COMPLETO</div>
+        <div class="menuGluten-title">GLUTEN FREE</div>
+        <div class="menuPrecio-title">PRECIO</div>
+        <div class="menuPrecio-title">IMAGEN</div>
+
+    </div>
+
+    {{#each menu}}
+    <div class="contenidoMenu">
+        <div class="menuID">{{ID}}</div>
+        <div class="menuCodigo">{{Codigo}}</div>
+        <div class="menuNombre">{{NombrePlato}}</div>
+        <div class="menuGluten">{{Gluten}}</div>
+        <div class="menuPrecio">$ {{Precio}}</div>
+        <div class="menuImg">{{Img}}</div>
+        <form class="menuPrecio" action="/links/borrarmenu" method="POST">
+            <input style="display: none" type="text" value="{{ID}}" name="ID">
+            <button class="borrarmenu" type="submit">Borrar</button>
+        </form>
+        <a class="menuEditar" href="/links/editar/{{ID}}">Editar</a>
+
+    </div>
+    {{/each}}
+
+
+
+
+
+
+
+
+
+    <script>
+        var fecha = document.getElementById('fecha');
+        var hora = document.getElementsByClassName('hora2');
+        var gluten = document.getElementsByClassName('menuGluten');
+        var contEditar = document.getElementById('cont-editar');
+
+
+        function menuGluten() {
+            for (let i = 0; i < gluten.length; i++) {
+                if (gluten[i].textContent === "0") {
+                    gluten[i].textContent = "SI";
+                } else {
+                    gluten[i].textContent = "NO";
+                };
+            };
+        };
+
+        function ponerfecha() {
+            var hoy = new Date();
+            var dd = String(hoy.getDate()).padStart(2, '0');
+            var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+            var yyyy = hoy.getFullYear();
+            hoy = dd + '/' + mm + '/' + yyyy;
+            fecha.textContent = hoy;
+        };
+
+
+        ponerfecha();
+        menuGluten();
+    </script>
+</body>
